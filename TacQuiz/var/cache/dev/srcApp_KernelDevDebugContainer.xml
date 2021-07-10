@@ -148,6 +148,7 @@
     <parameter key="twig.exception_listener.controller">null</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>bootstrap_4_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">C:\Users\drwhoo\Desktop\TAC GIT\TacQuiz\TacQuiz/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -338,6 +339,20 @@
     <service id="kernel" class="App\Kernel" public="true" synthetic="true">
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Controller\CategoryController" class="App\Controller\CategoryController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\CategoryController"/>
+      </call>
+    </service>
+    <service id="App\Controller\QuizController" class="App\Controller\QuizController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\QuizController"/>
+      </call>
+    </service>
     <service id="App\Controller\TestController" class="App\Controller\TestController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -352,8 +367,44 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\UserController"/>
       </call>
     </service>
+    <service id="App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\ChoicesType" class="App\Form\ChoicesType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\ConnectionType" class="App\Form\ConnectionType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
+    </service>
+    <service id="App\Form\QuestionType" class="App\Form\QuestionType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\QuizType" class="App\Form\QuizType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\ChoicesRepository" class="App\Repository\ChoicesRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\QuestionRepository" class="App\Repository\QuestionRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\QuizRepository" class="App\Repository\QuizRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\RandomRepository" class="App\Repository\RandomRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id=".legacy_controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
@@ -769,7 +820,11 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\CategoryType</argument>
+        <argument>App\Form\ChoicesType</argument>
         <argument>App\Form\ConnectionType</argument>
+        <argument>App\Form\QuestionType</argument>
+        <argument>App\Form\QuizType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1103,7 +1158,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.z6ueDuM"/>
+      <argument type="service" id=".service_locator.S0G8vr4"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3893,7 +3948,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.I3K77mT"/>
+      <argument type="service" id=".service_locator.7RqTJ4_"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4864,14 +4919,40 @@
         <argument>server:status</argument>
       </call>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\QuizController" class="App\Controller\QuizController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\QuizController" class="App\Controller\QuizController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\QuizController" class="App\Controller\QuizController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\TestController" class="App\Controller\TestController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CategoryType" class="App\Form\CategoryType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChoicesType" class="App\Form\ChoicesType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ChoicesType" class="App\Form\ChoicesType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ConnectionType" class="App\Form\ConnectionType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ConnectionType" class="App\Form\ConnectionType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\QuestionType" class="App\Form\QuestionType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\QuestionType" class="App\Form\QuestionType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\QuizType" class="App\Form\QuizType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\QuizType" class="App\Form\QuizType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ChoicesRepository" class="App\Repository\ChoicesRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ChoicesRepository" class="App\Repository\ChoicesRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\QuestionRepository" class="App\Repository\QuestionRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\QuestionRepository" class="App\Repository\QuestionRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\QuizRepository" class="App\Repository\QuizRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\QuizRepository" class="App\Repository\QuizRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RandomRepository" class="App\Repository\RandomRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\RandomRepository" class="App\Repository\RandomRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.CmORmuK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5153,9 +5234,48 @@
         <argument>make:migration</argument>
       </call>
     </service>
-    <service id=".service_locator.I3K77mT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.o3htLhs" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="session" type="service_closure" id="session"/>
+      </argument>
+    </service>
+    <service id=".service_locator.OnBqzdC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Controller\CategoryController::Deletecat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController::Updatecat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController::addCat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController::displayCat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController::displayCatuser" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController::displayCatuserQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController::index" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController::Addquiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController::DeleteQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController::DisplayQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController::DisplayQuizCat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController::UpdateQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController::index" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\TestController::HomeNavigation" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\UserController::connection" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\UserController::logout" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:Deletecat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:Updatecat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:addCat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:displayCat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:displayCatuser" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:displayCatuserQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\CategoryController:index" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController:Addquiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController:DeleteQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController:DisplayQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController:DisplayQuizCat" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController:UpdateQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuizController:index" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\TestController:HomeNavigation" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\UserController:connection" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\UserController:logout" type="service_closure" id=".service_locator.o3htLhs"/>
+      </argument>
     </service>
     <service id=".service_locator.Y7gDuDN" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5216,10 +5336,14 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.z6ueDuM" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.S0G8vr4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\CategoryType" type="service_closure" id="App\Form\CategoryType"/>
+        <argument key="App\Form\ChoicesType" type="service_closure" id="App\Form\ChoicesType"/>
         <argument key="App\Form\ConnectionType" type="service_closure" id="App\Form\ConnectionType"/>
+        <argument key="App\Form\QuestionType" type="service_closure" id="App\Form\QuestionType"/>
+        <argument key="App\Form\QuizType" type="service_closure" id="App\Form\QuizType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
@@ -5393,6 +5517,17 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
+    <service id=".service_locator.7RqTJ4_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Repository\CategoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+        <argument key="App\Repository\ChoicesRepository" type="service_closure" id="App\Repository\ChoicesRepository"/>
+        <argument key="App\Repository\QuestionRepository" type="service_closure" id="App\Repository\QuestionRepository"/>
+        <argument key="App\Repository\QuizRepository" type="service_closure" id="App\Repository\QuizRepository"/>
+        <argument key="App\Repository\RandomRepository" type="service_closure" id="App\Repository\RandomRepository"/>
+        <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
+      </argument>
+    </service>
     <service id="debug.security.voter.security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
       <argument type="service" id="security.access.authenticated_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
@@ -5440,6 +5575,18 @@
         <argument key="session" type="service_closure" id="session" on-invalid="ignore"/>
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\CategoryController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\CategoryController"/>
+      <argument>App\Controller\CategoryController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\QuizController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\QuizController"/>
+      <argument>App\Controller\QuizController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>
     <service id=".service_locator.vdmMuyE.App\Controller\TestController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\TestController"/>
@@ -5599,12 +5746,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.I3K77mT"/>
+      <argument type="service" id=".service_locator.OnBqzdC"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.I3K77mT"/>
+      <argument type="service" id=".service_locator.OnBqzdC"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -6006,7 +6153,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.I3K77mT"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.OnBqzdC"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

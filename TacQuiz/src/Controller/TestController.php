@@ -2,19 +2,24 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
     /**
-     * @Route("/test", name="test")
+     * @Route("/Home", name="Home")
      */
-    public function index(): Response
-    {
-        return $this->render('test/index.html.twig', [
+    public function HomeNavigation(SessionInterface $session): Response
+    {if(is_null($session->get('user'))){
+        return $this->redirectToRoute('connection');
+    }
+    $user=$this->getDoctrine()->getRepository(User::class)->find($session->get('user')->getId());
+        return $this->render('Home.html.twig', [
             'controller_name' => 'TestController',
-        ]);
+            'user'=>$user,   ]);
     }
 }

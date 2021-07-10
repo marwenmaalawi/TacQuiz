@@ -11,7 +11,7 @@ class ConnectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Login')
+            ->add('Email')
             ->add('Password',PasswordType::class)
         ;
     }

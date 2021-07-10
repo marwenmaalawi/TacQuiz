@@ -770,7 +770,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--begin::Topbar-->
                     <div class=\"topbar\" >
                         <!--begin::Search-->
-                        <div class=\"dropdown\" id=\"kt_quick_search_toggle\"  style=\"color: white\">
+                        <div class=\"dropdown\" id=\"kt_quick_search_toggle\"  >
                             <!--begin::Toggle-->
                             <div class=\"topbar-item\" data-toggle=\"dropdown\" data-offset=\"10px,0px\" >
                                 <div class=\"btn btn-icon btn-clean btn-lg btn-dropdown mr-1\">
@@ -888,7 +888,36 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--begin::Entry-->
                 <div class=\"d-flex flex-column-fluid\" >
                     <!--begin::Container-->
-                    <div class=\"container\"></div>
+                    <div class=\"container\">
+
+                        <div class=\"card card-custom gutter-b\">
+                            <div class=\"card-header\">
+
+                                <div class=\"card-title\">
+                                    <h3 class=\"card-label\">
+                                        Basic Card
+                                   
+                                    </h3>
+                                </div>
+                                <div class=\"card-toolbar\">
+                                    <a href=\"#\" class=\"btn btn-sm btn-white font-weight-bold\">
+                                        <i class=\"ki ki-gear text-success\"></i>
+                                    </a>
+                                    <a href=\"#\" class=\"btn btn-sm btn-white font-weight-bold\">
+                                        <i class=\"flaticon2-trash text-danger\"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class=\"card-body\">
+                                ...
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
                     <!--end::Container-->
                 </div>
                 <!--end::Entry-->
@@ -1787,7 +1816,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--begin::Topbar-->
                     <div class=\"topbar\" >
                         <!--begin::Search-->
-                        <div class=\"dropdown\" id=\"kt_quick_search_toggle\"  style=\"color: white\">
+                        <div class=\"dropdown\" id=\"kt_quick_search_toggle\"  >
                             <!--begin::Toggle-->
                             <div class=\"topbar-item\" data-toggle=\"dropdown\" data-offset=\"10px,0px\" >
                                 <div class=\"btn btn-icon btn-clean btn-lg btn-dropdown mr-1\">
@@ -1905,7 +1934,36 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--begin::Entry-->
                 <div class=\"d-flex flex-column-fluid\" >
                     <!--begin::Container-->
-                    <div class=\"container\"></div>
+                    <div class=\"container\">
+
+                        <div class=\"card card-custom gutter-b\">
+                            <div class=\"card-header\">
+
+                                <div class=\"card-title\">
+                                    <h3 class=\"card-label\">
+                                        Basic Card
+                                   
+                                    </h3>
+                                </div>
+                                <div class=\"card-toolbar\">
+                                    <a href=\"#\" class=\"btn btn-sm btn-white font-weight-bold\">
+                                        <i class=\"ki ki-gear text-success\"></i>
+                                    </a>
+                                    <a href=\"#\" class=\"btn btn-sm btn-white font-weight-bold\">
+                                        <i class=\"flaticon2-trash text-danger\"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class=\"card-body\">
+                                ...
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
                     <!--end::Container-->
                 </div>
                 <!--end::Entry-->
