@@ -39,6 +39,11 @@ class Question
      */
     private $choices;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $answerType;
+
     public function __construct()
     {
         $this->choices = new ArrayCollection();
@@ -111,6 +116,18 @@ class Question
                 $choice->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAnswerType(): ?string
+    {
+        return $this->answerType;
+    }
+
+    public function setAnswerType(?string $answerType): self
+    {
+        $this->answerType = $answerType;
 
         return $this;
     }

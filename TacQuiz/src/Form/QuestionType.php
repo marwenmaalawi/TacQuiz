@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +15,11 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('answerType',ChoiceType::class, array(
+                'choices' => array('Texte' => "texte",
+                    'Image' => "image",)
+            ))
+
             ->add('imageLink', FileType::class, [
                 'mapped' => false,
                 'required' => false,

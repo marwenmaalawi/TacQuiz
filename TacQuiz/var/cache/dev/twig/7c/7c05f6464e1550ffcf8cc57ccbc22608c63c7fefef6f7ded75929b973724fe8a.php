@@ -111,19 +111,27 @@ class __TwigTemplate_fd2c80ec717823fa8b860bd9feea4c9f82d2afc2645468dbbbe26a4517d
         // line 35
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 35, $this->source); })()), "random", [], "any", false, false, false, 35), 'widget');
         echo "
-    <div class=\"btn-primary \"> ";
+    ";
         // line 36
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 36, $this->source); })()), "Submit", [], "any", false, false, false, 36), 'row');
-        echo " </div>
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 36, $this->source); })()), "publicResult", [], "any", false, false, false, 36), 'label');
+        echo "
     ";
         // line 37
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 37, $this->source); })()), 'form_end');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 37, $this->source); })()), "publicResult", [], "any", false, false, false, 37), 'widget');
+        echo "
+    <div class=\"btn-primary \"> ";
+        // line 38
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 38, $this->source); })()), "Submit", [], "any", false, false, false, 38), 'row');
+        echo " </div>
+    ";
+        // line 39
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 39, $this->source); })()), 'form_end');
         echo "
 
 </div>
 ";
-        // line 40
-        $this->loadTemplate("Temp2.html.twig", "quiz/addQuiz.html.twig", 40)->display($context);
+        // line 42
+        $this->loadTemplate("Temp2.html.twig", "quiz/addQuiz.html.twig", 42)->display($context);
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
 
@@ -144,7 +152,7 @@ class __TwigTemplate_fd2c80ec717823fa8b860bd9feea4c9f82d2afc2645468dbbbe26a4517d
 
     public function getDebugInfo()
     {
-        return array (  126 => 40,  120 => 37,  116 => 36,  112 => 35,  108 => 34,  104 => 33,  100 => 32,  96 => 31,  92 => 30,  88 => 29,  84 => 28,  80 => 27,  76 => 26,  72 => 25,  68 => 23,  66 => 22,  43 => 1,);
+        return array (  134 => 42,  128 => 39,  124 => 38,  120 => 37,  116 => 36,  112 => 35,  108 => 34,  104 => 33,  100 => 32,  96 => 31,  92 => 30,  88 => 29,  84 => 28,  80 => 27,  76 => 26,  72 => 25,  68 => 23,  66 => 22,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -184,6 +192,8 @@ class __TwigTemplate_fd2c80ec717823fa8b860bd9feea4c9f82d2afc2645468dbbbe26a4517d
     {{ form_widget(form.image) }}
     {{ form_label(form.random,\"\")  }}
     {{ form_widget(form.random) }}
+    {{ form_label(form.publicResult,\"\")  }}
+    {{ form_widget(form.publicResult) }}
     <div class=\"btn-primary \"> {{ form_row(form.Submit) }} </div>
     {{ form_end(form) }}
 

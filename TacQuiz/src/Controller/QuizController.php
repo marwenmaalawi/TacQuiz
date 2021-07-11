@@ -118,6 +118,8 @@ class QuizController extends AbstractController
                 );}
             $Cat=$Quiz->getCategory()->getId();
                 $Quiz->setImage($newFilename);
+                $Quiz->setPublic(false);
+
                 $em = $this->getDoctrine()->getManager();
 
                 $em->persist($Quiz);
@@ -142,6 +144,7 @@ class QuizController extends AbstractController
             return $this->redirectToRoute('connection');
 
         }
+
         $user=$this->getDoctrine()->getRepository(User::class)->find($session->get('user')->getId());
 
         $QuizFind = $this->getDoctrine()->getRepository(Quiz::class)->find($id);
@@ -166,14 +169,26 @@ class QuizController extends AbstractController
         }
         $user=$this->getDoctrine()->getRepository(User::class)->find($session->get('user')->getId());
 
-        $catFind = $this->getDoctrine()->getRepository(Quiz::class)->findBy(['id' => $id])[0];
-        $form = $this->createForm(QuizType::class, $catFind);
+        $quizFind = $this->getDoctrine()->getRepository(Quiz::class)->findBy(['id' => $id])[0];
+        $form = $this->createForm(QuizType::class, $quizFind);
         $form->add('Update', SubmitType::class);
-        $R=$catFind->getRandom();
+        $R=$quizFind->getRandom();
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() ) {
-            $Cat=$catFind->getCategory()->getId();
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['image']->getData();
+            if ($uploadedFile) {
+                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
+                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
+                $uploadedFile->move(
+                    $destination,
+                    $newFilename
+                );}
+            $quizFind->setImage($newFilename);
+            $Cat=$quizFind->getCategory()->getId();
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('DisplayQuizCat',['id'=>$Cat, 'user'=>$user,]);

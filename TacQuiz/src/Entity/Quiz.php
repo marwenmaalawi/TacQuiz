@@ -61,6 +61,11 @@ class Quiz
      */
     private $public;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $publicResult;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -187,6 +192,18 @@ class Quiz
     public function setPublic(?bool $public): self
     {
         $this->public = $public;
+
+        return $this;
+    }
+
+    public function getPublicResult(): ?bool
+    {
+        return $this->publicResult;
+    }
+
+    public function setPublicResult(?bool $publicResult): self
+    {
+        $this->publicResult = $publicResult;
 
         return $this;
     }

@@ -17,10 +17,7 @@ class Choices
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
+
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -42,17 +39,7 @@ class Choices
         return $this->id;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
 
-    public function setType(?string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getState(): ?int
     {

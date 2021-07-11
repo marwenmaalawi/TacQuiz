@@ -36,9 +36,14 @@ class QuizType extends AbstractType
                 'mapped' => false,
                 'required' => false,
             ])
+            ->add('publicResult',CheckboxType::class, [
+                'label_attr' => ['class' => 'switch-custom'],'required' => false,
+            ])
             ->add('random',CheckboxType::class, [
         'label_attr' => ['class' => 'switch-custom'],'required' => false,
-    ]) ;
+    ])
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

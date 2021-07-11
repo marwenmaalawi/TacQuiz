@@ -346,6 +346,13 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\CategoryController"/>
       </call>
     </service>
+    <service id="App\Controller\QuestionController" class="App\Controller\QuestionController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vdmMuyE.App\Controller\QuestionController"/>
+      </call>
+    </service>
     <service id="App\Controller\QuizController" class="App\Controller\QuizController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -4922,6 +4929,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\CategoryController" class="App\Controller\CategoryController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\QuestionController" class="App\Controller\QuestionController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\QuestionController" class="App\Controller\QuestionController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\QuestionController" class="App\Controller\QuestionController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\QuizController" class="App\Controller\QuizController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\QuizController" class="App\Controller\QuizController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\QuizController" class="App\Controller\QuizController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5240,7 +5250,7 @@
         <argument key="session" type="service_closure" id="session"/>
       </argument>
     </service>
-    <service id=".service_locator.OnBqzdC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.8riH65p" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CategoryController::Deletecat" type="service_closure" id=".service_locator.o3htLhs"/>
@@ -5250,6 +5260,8 @@
         <argument key="App\Controller\CategoryController::displayCatuser" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\CategoryController::displayCatuserQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\CategoryController::index" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuestionController::DeleteQuestion" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuestionController::DisplayQuestions" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\QuizController::Addquiz" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\QuizController::DeleteQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\QuizController::DisplayQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
@@ -5266,6 +5278,8 @@
         <argument key="App\Controller\CategoryController:displayCatuser" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\CategoryController:displayCatuserQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\CategoryController:index" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuestionController:DeleteQuestion" type="service_closure" id=".service_locator.o3htLhs"/>
+        <argument key="App\Controller\QuestionController:DisplayQuestions" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\QuizController:Addquiz" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\QuizController:DeleteQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
         <argument key="App\Controller\QuizController:DisplayQuiz" type="service_closure" id=".service_locator.o3htLhs"/>
@@ -5582,6 +5596,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vdmMuyE" method="withContext"/>
     </service>
+    <service id=".service_locator.vdmMuyE.App\Controller\QuestionController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\QuestionController"/>
+      <argument>App\Controller\QuestionController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vdmMuyE" method="withContext"/>
+    </service>
     <service id=".service_locator.vdmMuyE.App\Controller\QuizController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\QuizController"/>
       <argument>App\Controller\QuizController</argument>
@@ -5746,12 +5766,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.OnBqzdC"/>
+      <argument type="service" id=".service_locator.8riH65p"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.OnBqzdC"/>
+      <argument type="service" id=".service_locator.8riH65p"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface" public="false">
       <argument type="collection"/>
@@ -6153,7 +6173,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.OnBqzdC"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.8riH65p"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>

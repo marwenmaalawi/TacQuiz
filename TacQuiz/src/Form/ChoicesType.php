@@ -15,10 +15,6 @@ class ChoicesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type',ChoiceType::class, array(
-                'choices' => array('Texte' => "texte",
-                    'Image' => "image",)
-            ))
 
             ->add('state',CheckboxType::class, [
                 'label_attr' => ['class' => 'switch-custom'],'required' => false,

@@ -105,7 +105,7 @@ class __TwigTemplate_0c70f9d9ea003646fe8cbaad3967eb92beb661275a93b97b41514fd7fba
 
 
     <div class=\"container\">
-         <div class=\"row\">
+         <div class=\"row\" >
              ";
         // line 66
         $context['_parent'] = $context;
@@ -114,17 +114,17 @@ class __TwigTemplate_0c70f9d9ea003646fe8cbaad3967eb92beb661275a93b97b41514fd7fba
             // line 67
             echo "             <div class=\"col-xs-12 col-sm-4\">
                  <div class=\"card\">
-                     <div class=\"card-toolbar\" style=\"margin-left:300px;\">
+                     <div class=\"card-toolbar\" style=\"margin-left:300px; \">
                          <a href=\"";
             // line 70
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("UpdateQuiz", ["id" => twig_get_attribute($this->env, $this->source, $context["Q"], "id", [], "any", false, false, false, 70)]), "html", null, true);
-            echo "\" class=\"btn btn-sm btn-white font-weight-bold\" >
+            echo "\" class=\"btn btn-sm  font-weight-bold\" style=\"rgba(255,255,255,0.6)\" >
                              <i class=\"ki ki-gear text-success\" title=\"Edit\"></i>
                          </a>
                          <a  href=\"";
             // line 73
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("DeleteQuiz", ["id" => twig_get_attribute($this->env, $this->source, $context["Q"], "id", [], "any", false, false, false, 73)]), "html", null, true);
-            echo "\" class=\"btn btn-sm btn-white font-weight-bold\" onclick=\"return confirm('Are you sure you want to delete this item?');\">
+            echo "\" class=\"btn btn-sm  font-weight-bold\" onclick=\"return confirm('Are you sure you want to delete this item?'); \" >
                              <i class=\"flaticon2-trash text-danger\" title=\"Delete\" ></i>
                          </a>
                      </div>
@@ -148,7 +148,10 @@ class __TwigTemplate_0c70f9d9ea003646fe8cbaad3967eb92beb661275a93b97b41514fd7fba
                      </div>
 
                      <div class=\"card-read-more\">
-                         <a class=\"btn btn-link btn-block\" >
+                         <a href=\"";
+            // line 91
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("DisplayQues", ["id" => twig_get_attribute($this->env, $this->source, $context["Q"], "id", [], "any", false, false, false, 91)]), "html", null, true);
+            echo "\" class=\"btn btn-link btn-block\" >
                              Consult Questions
                          </a>
                      </div>
@@ -188,7 +191,7 @@ class __TwigTemplate_0c70f9d9ea003646fe8cbaad3967eb92beb661275a93b97b41514fd7fba
 
     public function getDebugInfo()
     {
-        return array (  170 => 103,  163 => 98,  143 => 84,  134 => 78,  126 => 73,  120 => 70,  115 => 67,  111 => 66,  45 => 2,  43 => 1,);
+        return array (  173 => 103,  166 => 98,  153 => 91,  143 => 84,  134 => 78,  126 => 73,  120 => 70,  115 => 67,  111 => 66,  45 => 2,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -257,15 +260,15 @@ class __TwigTemplate_0c70f9d9ea003646fe8cbaad3967eb92beb661275a93b97b41514fd7fba
 
 
     <div class=\"container\">
-         <div class=\"row\">
+         <div class=\"row\" >
              {% for Q in Quiz %}
              <div class=\"col-xs-12 col-sm-4\">
                  <div class=\"card\">
-                     <div class=\"card-toolbar\" style=\"margin-left:300px;\">
-                         <a href=\"{{path('UpdateQuiz',{id:Q.id})}}\" class=\"btn btn-sm btn-white font-weight-bold\" >
+                     <div class=\"card-toolbar\" style=\"margin-left:300px; \">
+                         <a href=\"{{path('UpdateQuiz',{id:Q.id})}}\" class=\"btn btn-sm  font-weight-bold\" style=\"rgba(255,255,255,0.6)\" >
                              <i class=\"ki ki-gear text-success\" title=\"Edit\"></i>
                          </a>
-                         <a  href=\"{{path('DeleteQuiz',{id:Q.id})}}\" class=\"btn btn-sm btn-white font-weight-bold\" onclick=\"return confirm('Are you sure you want to delete this item?');\">
+                         <a  href=\"{{path('DeleteQuiz',{id:Q.id})}}\" class=\"btn btn-sm  font-weight-bold\" onclick=\"return confirm('Are you sure you want to delete this item?'); \" >
                              <i class=\"flaticon2-trash text-danger\" title=\"Delete\" ></i>
                          </a>
                      </div>
@@ -283,7 +286,7 @@ class __TwigTemplate_0c70f9d9ea003646fe8cbaad3967eb92beb661275a93b97b41514fd7fba
                      </div>
 
                      <div class=\"card-read-more\">
-                         <a class=\"btn btn-link btn-block\" >
+                         <a href=\"{{path('DisplayQues',{id:Q.id})}}\" class=\"btn btn-link btn-block\" >
                              Consult Questions
                          </a>
                      </div>
